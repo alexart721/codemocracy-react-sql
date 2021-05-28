@@ -13,8 +13,8 @@ const getTopics = async (req, res) => {
 
 const postTopic = async (req, res) => {
   try {
-    const { title } = req.body.title;
-    const topic = await Topic.create({ title });
+    console.log(req.body);
+    const topic = await Topic.create({ title: req.body.title });
     res.status(201);
     res.send(topic);
   } catch (err) {
@@ -26,7 +26,7 @@ const postTopic = async (req, res) => {
 const voteTopic = async (req, res) => {
   try {
     const { id, direction } = req.params;
-    const updatedTopic;
+    let updatedTopic;
     if (direction !== 'up' && direction !== 'down') {
       throw new Error('Wrong direction');
     }
@@ -47,6 +47,7 @@ const deleteTopic = async (req, res) => {
   try {
     await Topic.destroy({ where: { id: req.params.id } });
     res.status(204);
+    res.send();
   } catch (err) {
     res.status(500);
     res.send(err);
