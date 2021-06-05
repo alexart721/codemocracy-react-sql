@@ -9,13 +9,19 @@ function TopicItem({ topic }){
   return (
     <div className="topic">
       <div className="vote">
-        <button className='up-vote' onClick={() => voteTopic(topic.id, 'up')}>
-          ^
-        </button>
-        {topic.score}
-        <button className='down-vote' onClick={() => voteTopic(topic.id, 'down')}>
-          v
-        </button>
+        <div>
+          <button className='up-vote' onClick={() => voteTopic(topic.id, 'up')}>
+            ^
+          </button>
+        </div>
+        <div className="topic-score">
+          {topic.score}
+        </div>
+        <div>
+          <button className='down-vote' onClick={() => voteTopic(topic.id, 'down')}>
+            v
+          </button>
+        </div>
       </div>
       <div className="topic-title">
         <h2>{topic.title}</h2>

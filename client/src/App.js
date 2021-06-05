@@ -3,14 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { getTopics, postTopic, updateTopic, deleteTopic } from './services/apiService';
 import TopicContext from './services/topicContext';
 import TopicList from './components/TopicList/TopicList';
-import TopicSearch from './components/TopicSearch/TopicSearch';
+import TopicSubmit from './components/TopicSubmit/TopicSubmit';
 
 function App() {
   const [topics, setTopics] = useState([]);
 
   useEffect(() => {
     getTopics().then(topicList => {
-      console.log(topicList);
       topicList.sort((a, b) => b.score - a.score);
       setTopics(topicList);
     });
@@ -43,7 +42,7 @@ function App() {
   return (
     <TopicContext.Provider value={{topics, createTopic, voteTopic, removeTopic}}>
       <div className="App">
-        <TopicSearch />
+        <TopicSubmit />
         <TopicList />
       </div>
     </TopicContext.Provider>

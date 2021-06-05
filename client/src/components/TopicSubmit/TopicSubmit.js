@@ -1,8 +1,8 @@
-import './TopicSearch.css';
+import './TopicSubmit.css';
 import React, { useContext, useState } from 'react';
 import TopicContext from '../../services/topicContext';
 
-function TopicSearch() {
+function TopicSubmit() {
   const { createTopic } = useContext(TopicContext);
   const [title, setTitle] = useState('');
 
@@ -17,7 +17,7 @@ function TopicSearch() {
   }
 
   return(
-    <div>
+    <div className="submit-container">
       <form action="submit" onSubmit={submitHandler}>
         <input type="text" name="title" value={title} onChange={changeHandler} />
         <button type="submit">Submit</button>
@@ -26,4 +26,4 @@ function TopicSearch() {
   );
 }
 
-export default TopicSearch;
+export default TopicSubmit;
