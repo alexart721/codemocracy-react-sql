@@ -31,9 +31,11 @@ const voteTopic = async (req, res) => {
       throw new Error('Wrong direction');
     }
     if (direction === 'up') {
-      updatedTopic = await Topic.increment('score', { where: { id: id } });
+      await Topic.increment('score', { where: { id: id } });
+      updatedTopic = await Topic.findAll({ where: { id: id } });
     } else {
-      updatedTopic = await Topic.decrement('score', { where: { id: id } });
+      await Topic.decrement('score', { where: { id: id } });
+      updatedTopic = await Topic.findAll({ where: { id: id } });
     }
     res.status(200);
     res.send(updatedTopic);
